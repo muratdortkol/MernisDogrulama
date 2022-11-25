@@ -1,0 +1,76 @@
+﻿@page "/basvur"
+
+@using MernisDogrulama.Data
+@using DataLibrary
+@using Microsoft.Extensions.Configuration
+@inject IDataAccess _data
+@inject IConfiguration _config
+@inject MernisService MernisService
+<h1>TC Kimlik Doğrulama</h1>
+
+@if (isPost)
+{
+    if (dogrulamaSonucu)
+    {
+        <div class="alert alert-success">Tc Kimlik Doğrulama Başarılıdır.</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">Tc Kimlik Doğrulanamadı.</div>
+    }
+}
+
+
+<EditForm Model=@kullanici OnSubmit=@Dogrula>
+
+    <div class="form-group">
+        <label for="ad">Ad</label>
+        <input type="text" class="form-control" @bind="@kullanici.ad" id="ad"  onkeypress="return isLetterKey(event)">
+    </div>
+    <div class="form-group">
+        <label for="soyad">Soyad</label>
+        <input type="text" class="form-control" @bind="@kullanici.soyad" id="soyad" onkeypress="return isLetterKey(event)">
+    </div>
+    <div class="form-group">
+        <label for="tcKimlikNo">TC Kimlik No</label>
+        <input type="text" class="form-control" @bind="@kullanici.tc_no" id="tcKimlikNo" maxlength="11" onkeypress="return isNumberKey(event)">
+    </div>
+    <div class="form-group">
+        <label for="dogumYili">Doğum Tarihi</label>
+        <input type="date" class="form-control" @bind="@kullanici.dogum_tarih" id="dogumYili">
+    </div>
+
+
+    <input type="submit" value="Doğrula" class="btn btn-primary" />
+</EditForm>
+
+
+
+
+@code {
+
+    Kullanici kullanici = new Kullanici();
+    bool dogrulamaSonucu, isPost;
+    private async Task InsertData(string sonuc)
+    {
+        string sql = "insert into kayit (ad, soyad,tc_no,dogum_tarih,islem_tarihi,sonuc) values (@ad, @soyad,@tc_no,@dogum_tarih, now(), @sonuc);";
+
+        await _data.SaveData(sql, new { ad=kullanici.ad,soyad=kullanici.soyad,tc_no=kullanici.tc_no,dogum_tarih=kullanici.dogum_tarih, sonuc=sonuc }, _config.GetConnectionString("default"));
+
+        await OnInitializedAsync();
+    }
+
+    protected  async void Dogrula()
+    {
+        isPost = true;
+        dogrulamaSonucu = MernisService.TcKimlikDogrula(kullanici).GetAwaiter().GetResult();
+        string sonuc="";
+        if (dogrulamaSonucu) sonuc = "DOGRU";
+        else sonuc = "YANLIS";
+       await InsertData(sonuc);
+
+     
+        
+    }
+
+}

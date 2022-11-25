@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MernisDogrulama", "MernisDogrulama\MernisDogrulama.csproj", "{846F1F20-EA01-444A-9ECB-939E546A384B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLibrary", "DataLibrary\DataLibrary.csproj", "{FD76101F-0766-42C5-BCE6-BB25259E9F7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{846F1F20-EA01-444A-9ECB-939E546A384B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846F1F20-EA01-444A-9ECB-939E546A384B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846F1F20-EA01-444A-9ECB-939E546A384B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846F1F20-EA01-444A-9ECB-939E546A384B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD76101F-0766-42C5-BCE6-BB25259E9F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD76101F-0766-42C5-BCE6-BB25259E9F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD76101F-0766-42C5-BCE6-BB25259E9F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD76101F-0766-42C5-BCE6-BB25259E9F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0590087F-92F6-4ACA-821B-EBFF5755DB24}
+	EndGlobalSection
+EndGlobal
